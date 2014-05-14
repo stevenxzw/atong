@@ -21,20 +21,14 @@
            res.send('<div>test</div>');
         }],
         /*----------------------初始化数据-------------------------*/
-        '/init/cars' : [false, initClass.importCars],  //导入车数据
-        '/init/delCarType' : [false, initClass.delCarType],
+        '/init/user' : [false, initClass.initUsers],
         /*----------------------初始化数据结束-------------------------*/
 
         /*--------------------------API---------------------------*/
 
-        '/api/getCarType' : [true,function(req, res){
-             var params = cutil.getHttpRequestParams(req);
-             apiCar.getCarType(req, res, params['key']);
-        }],
-        '/api/getCarTypes' : [true,apiCar.getCarTypes],
 
         '/api/login'   : apiUser.login,
-        '/api/cartypeCount' : apiCar.getCarTypeCount,
+
         /*-------------------------------------登录后台路由-----------------------------------------*/
         //登录页面
         '/admin/login' : [true, adminPage.login],
@@ -59,42 +53,8 @@
             //console.log('**********************');
             //console.log(res.locals.email);
             res.render('detail',{title:"详细内容"});
-        }],
-
-        '/anther' : require('./singleton').singleton.anther,
-
-        '/importCarType' : [true, initClass.importCarTypes],
-
-        '/admin/cartype' : [true,function(req, res){
-            if(_debug) console.log('---------------------------');
-            var params = cutil.getHttpRequestParams(req),
-                page = params['p'] || 1,
-                pageSize = params['ps']||20;
-            impl.getCarTypes(page, pageSize, function(err, r){
-                 if(err){
-                    _debug && console.log('read---cartype---error');
-                    throw err;
-                 }
-                var data = adminPage.carType(req, res);
-                res.render('admin/carType',cutil.extend({
-                    layout: 'adminLayout',
-                    action : 'admin/carType', title:"管理后台",cartypes:r, length : r.length},data));
-            })
-         }],
-
-        '/admin/cars' : [true,function(req, res){
-            var page = cutil.getHttpRequestParams(req)['p'] || 1;
-            impl.getCars(page, function(err, r){
-                if(err){
-                    _debug && console.log('read---cars---error');
-                    throw err;
-                }
-                var data = adminPage.cars(req, res);
-                res.render('admin/cars',cutil.extend({
-                    layout: 'adminLayout',
-                    action : 'admin/cars', title:"管理后台",cars:r, length : r.length},data));
-            })
         }]
+
 
     }
 

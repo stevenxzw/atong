@@ -17,7 +17,7 @@
     };
 
     var commonData = {
-        project_name : 'CarYous',
+        project_name : 'Atong',
 
         _debug : global._debug
 
@@ -29,24 +29,26 @@
             item : 'Home',
             uri : '/admin'
 
-        },{
+        },{             //用户列表
             cls : '',
-            item : 'Users',
-            uri : '/admin/users'
-        },{
+            item : 'UsersList',
+            uri : '/admin/usersList'
+        },{             //用户
             cls : '',
-            item : 'CarType',
-            uri : '/admin/cartype'
-
-        },{
+            item : 'User',
+            uri : '/admin/user'
+        },{             //群组
             cls : '',
-            item : 'Cars',
-            uri : '/admin/cars'
-
-        },{
+            item : 'Group',
+            uri : '/admin/group'
+        },{             //商店列表
             cls : '',
-            item : 'Park',
-            uri : '/admin/park'
+            item : 'StoresList',
+            uri : '/admin/storeslist'
+        },{             //商店
+            cls : '',
+            item : 'Store',
+            uri : '/admin/store'
         }]
 
     };

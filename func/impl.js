@@ -123,8 +123,42 @@
                     fn && fn("帐号不存在", result);
             })
 
-        }
+        },
         /*------------------ car 结束--------------------------*/
+
+        /*------------------ user --------------------------*/
+
+        addUser : function(user, fn){
+            mongo.add('user', user, function(err, result){
+                if(err){
+                    _debug && console.log('add---user---error');
+                    throw err;
+                }
+                _debug && console.log('add---user---success');
+                fn && fn(result);
+            });
+        },
+
+        getHasFans : function(uid, fn){
+            mongo.read('user', {'uid': uid}, function(err, result){
+                if(err){
+                    _debug && console.log('read---fans---error');
+                    throw err;
+                }
+                _debug && console.log('add---user---success');
+                fn && fn(result);
+            });
+        },
+
+
+
+
+        addFans : function(user, fn){
+
+
+        }
+
+        /*------------------ user 结束--------------------------*/
     };
 
 })()

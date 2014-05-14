@@ -8,7 +8,8 @@
     if(_debug) console.log('========================conn-----------------------');
     var mongo = require('mongoskin');
     if(global._local)
-        exports.db = mongo.db('mongodb://localhost/caryous');
+        exports.db = mongo.db('mongodb://localhost/atong');
     else
-        exports.db = mongo.db('mongodb://admin:123456@ds033709.mongolab.com:33709/stevenxie');
+        exports.db = mongo.db('mongodb://admin:123456@ds033087.mongolab.com:33087/atong');
+    //mongodb://<dbuser>:<dbpassword>@ds033087.mongolab.com:33087/atong
 })();

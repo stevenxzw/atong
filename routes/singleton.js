@@ -12,6 +12,7 @@
         },
 
         importCarType : function(req, res){
+            /*
             var cartype = require('./../data/cartype').cartype,
                 conn = require('./../func/mongo-skin').skin;
             conn.add('cartype', cartype, function(err,result){
@@ -22,6 +23,7 @@
                     res.render('importCarType');
                 }
             })
+            */
         }
     }
 

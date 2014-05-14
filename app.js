@@ -47,7 +47,8 @@ if ('production' === app.get('env')) {
 app.set('title', 'atong管理后台');
 
 app.use(express.cookieParser('123'));
-app.use(express.session({cookie:{maxAge:2000000,secret: 'node'}}));
+app.use(express.session({maxAge:10000, secret: "andylau" }));
+//app.use(express.session({cookie:{maxAge:2000000,secret: 'node'}}));
 /*
 app.use(function(req, res, next){
     // Website you wish to allow to connect

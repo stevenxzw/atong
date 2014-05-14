@@ -65,7 +65,17 @@
                     _debug && console.log('VR deleted!');
                 }
             });
+        },
+
+        drop :  function(table, fn){
+            db.collection(table || 'test1').drop(function(err, result) {
+                if(fn) fn(err, result);
+                else{
+                    _debug && console.log('drop');
+                }
+            });
         }
+
 
     }
 
