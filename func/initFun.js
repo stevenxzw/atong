@@ -12,6 +12,8 @@
 
         //用户创建
         initUsers : function(req, res){
+
+                
             mongo.add('user', require('./../data/usersData.js').userTable.users, function(err, result){
                 if(err){
                     _debug && console.log('add---users---error');
