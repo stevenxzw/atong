@@ -44,6 +44,24 @@
             pd.items[_item].cls = 'active';
             return pd;
 
+        },
+
+        usersList : function(req, res){
+            var data = this.publicDate(1);
+            var params = cutil.getHttpRequestParams(req),
+                page = params['p'] || 1,
+                pageSize = params['ps']||20;
+            impl.getUserList(page, pageSize, function(err, r){
+                if(err){
+                    _debug && console.log('read---cartype---error');
+                    throw err;
+                }
+                res.render('admin/users',cutil.extend({
+                    layout: 'adminLayout',
+                    action : 'admin/users', title:"管理后台",users:r, length : r.length},data));
+            })
+            return this.publicDate(1);
+
         }
 
 

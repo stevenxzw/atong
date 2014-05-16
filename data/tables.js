@@ -58,7 +58,6 @@
         }],
 
         //申请加为好友表
-
         fansTemp : [{
             uid : 'admin',
             targetUid : 'stevenxzw@163.com',
@@ -68,9 +67,27 @@
         }],
 
         //群组
+        group : [{
+            gid : '0001',
+            create : 'admin',
+            createTime : '1400144944448',
+            name : '东景花园',
+            des : '东景花园生活指南',
+            members : 2,
+            img : '',
+            memberids :'admin,stevenxzw@163.com'
+        }],
+
+        //群组消息
+        groupMessage : [{
+            gid : '001',
+            cuid : 'admin',
+            message : 'ha---ha',
+            createtime : '1400144944448',
+            type : 'text'//信息类型
+        }],
 
         //消息
-
         message : [{
            cuid : 'admin',//发布者
            ruid : 'stevenxzw@163.com',//接收者也可能是群组
@@ -104,7 +121,7 @@
             order : 0,
             lock : 0,
             upTime : '1400144944448',
-            img : '1.jpg,2.jpg'
+            img : '0002,0003'
         }],
 
         //个人订单
@@ -116,8 +133,34 @@
             bookTime : '1400144944448',
             msg : '六点前要送达',
             money : 53.6
-        }]
+        }],
 
+        //图片列表
+        pictures : [{
+            id : '0001',
+            uid : 'admin',
+            type : 1,//发送来原(1是头像,2是消息内容，3商品，)
+            url : 'http://file.gaofen.com//html/v5/img/logo.png',
+            text : '好漂亮1',
+            size : 1024,
+            wh : '500,500'
+        },{
+            id : '0002',
+            uid : 'admin',
+            type : 1,//发送来原(1是头像,2是消息内容，3商品，)
+            url : 'http://img3.bitautoimg.com/autoalbum/files/20120815/713/0439057132_3.jpg',
+            text : '好漂亮2',
+            size : 1024,
+            wh : '500,500'
+        },{
+            id : '0003',
+            uid : 'admin',
+            type : 1,//发送来原(1是头像,2是消息内容，3商品，)
+            url : 'http://img3.bitautoimg.com/autoalbum/files/20110622/878/1121408780_3.jpg',
+            text : '好漂亮3',
+            size : 1024,
+            wh : '500,500'
+        }]
 
     };
 

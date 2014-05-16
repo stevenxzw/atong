@@ -1,0 +1,32 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">用户列表  总数：{{length}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="list-group"  selector="div">
+            <div class="list-group-item">
+                <div>#index</div>
+                <div>faceImg</div>
+                <div>uid</div>
+                <div>likename</div>
+                <div>logTimes</div>
+            </div>
+            {{#each users}}
+            <div class="list-group-item" rel="uid:{{uid}},likename:{{likename}}">
+                <div>{{@index}}</div>
+                <div>{{#if faceImg}}yes{{else}}--{{/if}}</div>
+                <div>{{uid}}</div>
+                <div>{{likename}}</div>
+                <div>{{logTimes}}</div>
+                <div class="car-change"><a rel="" href="#">修改</a></div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var users = JSON.parse('{{{json users}}}');
+</script>

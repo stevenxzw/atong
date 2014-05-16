@@ -7,46 +7,9 @@
     var mongo = require('./mongo-skin.js').skin,
         _debug = global._debug;
     exports.Impl = {
-        //取车类型方法
-        getCarTypes : function(page, pageSize, fn){
-            mongo.read('cartype','', function(err, result){
-                /*
-                if(err){
-                    _debug && console.log('read---cartype---error');
-                    throw err;
-                }*/
-                fn && fn(err, result);
-            }, page, pageSize)
-        },
 
-        carTypeCount : function(fn){
-            mongo.count('cartype', '', function(err, result){
-                fn && fn(err, result);
-            });
-
-        },
-
-        getCarType : function(key , fn){
-            mongo.read('cartype',{'key' : key}, function(err, result){
-                /*
-                 if(err){
-                 _debug && console.log('read---cartype---error');
-                 throw err;
-                 }*/
-                fn && fn(err, result);
-            })
-        },
-
-        getCars : function(p, fn){
-            mongo.read('cars','', function(err, result){
-                fn && fn(err, result);
-            }, p)
-        },
-
-        getCarsById : function(id, fn){
-            mongo.read('cars',{'id' : id}, function(err, result){
-                fn && fn(err, result);
-            })
+        uploadTable : function(table, condition, items, fn){
+            mongo.update(table, condition, items, fn);
         },
 
         /*-----------------帐号功能------------------*/
@@ -60,17 +23,18 @@
 
         //取出帐号密码
         getUserPwd : function(uid, fn){
-            mongo.read('user', {"uid":uid}, function(err, result){
+            mongo.read('users', {"uid":uid}, function(err, result){
                 if(result.length){
-                    fn && fn(err, result[0].pwd);
+                    fn && fn(err, result[0].pwd, result[0]);
                 }else
                     fn && fn("帐号不存在", result);
             })
         },
 
+
         //获取帐号权限
         getRole : function(uid, fn){
-            mongo.read('user', {"uid":uid}, function(err, result){
+            mongo.read('users', {"uid":uid}, function(err, result){
                 if(result.length){
                     fn && fn(err, result[0].role);
                 }else
@@ -114,22 +78,11 @@
 
         /*------------------session cookie*--------------------------*/
 
-        /*------------------ car --------------------------*/
-        getCarByKey : function(key, fn){
-            mongo.read('car', {"pkey":key}, function(err, result){
-                if(result.length){
-                    fn && fn(err, result[0].role);
-                }else
-                    fn && fn("帐号不存在", result);
-            })
-
-        },
-        /*------------------ car 结束--------------------------*/
 
         /*------------------ user --------------------------*/
 
         addUser : function(user, fn){
-            mongo.add('user', user, function(err, result){
+            mongo.add('users', user, function(err, result){
                 if(err){
                     _debug && console.log('add---user---error');
                     throw err;
@@ -156,9 +109,19 @@
         addFans : function(user, fn){
 
 
-        }
+        },
 
+        getUserList : function(page, pageSize, fn){
+            mongo.read('users','', function(err, result){
+                /*
+                 if(err){
+                 _debug && console.log('read---cartype---error');
+                 throw err;
+                 }*/
+                fn && fn(err, result);
+            }, page, pageSize)
+        }
         /*------------------ user 结束--------------------------*/
-    };
+    }
 
 })()

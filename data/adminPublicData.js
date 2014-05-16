@@ -28,27 +28,38 @@
             cls :'',
             item : 'Home',
             uri : '/admin'
-
         },{             //用户列表
             cls : '',
-            item : 'UsersList',
-            uri : '/admin/usersList'
-        },{             //用户
-            cls : '',
             item : 'User',
-            uri : '/admin/user'
-        },{             //群组
+            uri : '/admin/users'
+        },{             //群组列表
             cls : '',
             item : 'Group',
             uri : '/admin/group'
         },{             //商店列表
             cls : '',
-            item : 'StoresList',
-            uri : '/admin/storeslist'
-        },{             //商店
-            cls : '',
             item : 'Store',
-            uri : '/admin/store'
+            uri : '/admin/stores'
+        },{             //个人消息列表
+            cls : '',
+            item : 'Message',
+            uri : '/admin/message'
+        },{             //群消息列表
+            cls : '',
+            item : 'GroupMessage',
+            uri : '/admin/groupMessage'
+        },{   //商品
+            cls : '',
+            item : 'Product',
+            uri : '/admin/product'
+        },{   //订单
+            cls : '',
+            item : 'Order',
+            uri : '/admin/order'
+        },{   //图片
+            cls : '',
+            item : 'Picture',
+            uri : '/admin/picture'
         }]
 
     };

@@ -8,6 +8,7 @@ lib-cov
 *.gz
 *.svn
 
+.idea
 pids
 logs
 results

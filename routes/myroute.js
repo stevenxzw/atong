@@ -21,7 +21,9 @@
            res.send('<div>test</div>');
         }],
         /*----------------------初始化数据-------------------------*/
-        '/init/user' : [false, initClass.initUsers],
+        '/init/tables' : [false, function(req, res){
+            initClass.initTables(req, res);
+        }],
         /*----------------------初始化数据结束-------------------------*/
 
         /*--------------------------API---------------------------*/
@@ -32,6 +34,13 @@
         /*-------------------------------------登录后台路由-----------------------------------------*/
         //登录页面
         '/admin/login' : [true, adminPage.login],
+
+        '/admin/users' : [true, function(req, res){
+            var data = adminPage.usersList(req, res);
+            //console.log('**********************');
+            //console.log(res.locals.email);
+            //res.render('detail',{title:"详细内容"});
+        }],
 
 
         /*-------------------------------------登录后台路由结束-------------------------------------*/
@@ -87,6 +96,7 @@
     }
 
     exports.routefn = fn;
+    //initClass.initTables();
     //initClass.importCars();
     //初始化数据
     //initClass.initUsers();
