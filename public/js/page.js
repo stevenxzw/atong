@@ -2,13 +2,13 @@
  * Created by zhiwen on 14-3-24.
  */
 
-(function(CY, $$, win){
+(function(AT, $$, win){
 
-    var util = CY['Util'],
-        Event = CY['Event'],
-        Tpl = CY['Tpl'];
+    var util = AT['Util'],
+        Event = AT['Event'],
+        Tpl = AT['Tpl'],
+        config = AT['config'];
     var _debug = config._debug;
-
     var myApp = angular.module('myApp',['DelegateEvents', 'ui.bootstrap'], function($interpolateProvider) {
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
@@ -65,8 +65,13 @@
                 template: '<div>Hi there</div>',
                 replace: true
             };
-        });
+        }).filter("vNull", function() {
 
+        return function(v) {
+            if(v === '') return '-';
+            return v;
+        };
+    });
 
     console.log('pageReady');
     //angular.element(document).ready(function() {
@@ -111,10 +116,10 @@
 
                 }])
                 break;
-            case 'admin/cars' :
-                myApp.controller('carsControl', ['$scope','$http','$compile',function($scope,$http,$compile){
+            case 'admin/users' :
+                myApp.controller('usersControl', ['$scope','$http','$compile',function($scope,$http,$compile){
+                    $scope.users = users;
                     $scope.itemClick = function(e, item) {}
-
                 }]);
                 break;
             case 'admin/carType' :
@@ -165,4 +170,4 @@
         }
    // });
 
-})(Caryous, jQuery, window);
+})(Atong, jQuery, window);

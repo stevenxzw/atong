@@ -2,7 +2,7 @@
  * Created by zhiwen on 14-3-27.
  */
 
-(function(CY, $$, win){
+(function(AT, $$, win){
     var tplRegIf = /\[\?(!?)\.([\w_$]+?)(\.[\w_$]+)?\?([\S\s]*?)\?\]/g,
         tplReg   = /\{(\.?[\w_|$]+)(\.[\w_$]+)?\}/g;
     var Tpl = {
@@ -140,6 +140,6 @@
 
     }
 
-    CY['Tpl'] = Tpl;
+    AT['Tpl'] = Tpl;
 
-})(Caryous, jQuery, window);
+})(Atong, jQuery, window);

@@ -60,7 +60,7 @@
                     layout: 'adminLayout',
                     action : 'admin/users', title:"管理后台",users:r, length : r.length},data));
             })
-            return this.publicDate(1);
+           // return this.publicDate(1);
 
         }
 

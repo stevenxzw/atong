@@ -4,8 +4,8 @@
 
 (function($, win){
 
-    if(typeof Caryous === 'undefined'){
-        Caryous = {};
+    if(typeof Atong === 'undefined'){
+        Atong = {};
     }
 
     var Util = {
@@ -200,12 +200,12 @@
 
     };
 
-    Caryous = {
+    Atong = {
         Util : Util,
 
         Event : Event
 
     };
 
-    win['Caryous'] = Caryous;
+    win['Atong'] = Atong;
 })(jQuery, window);
