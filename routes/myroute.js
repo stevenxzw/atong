@@ -7,7 +7,7 @@
     var _debug = global._debug ,
         initClass = require('./../func/initFun').initClass,
         impl = require('./../func/impl').Impl,
-        filter = require('./../func/filter').authorize,
+        filter = require('./../func/filter').routerFilter,
         cutil = require('./../func/cutil').util,
         apiUser = require('./../API/user').apiUser,
         apiCar = require('./../API/car').apiCar,
@@ -62,6 +62,15 @@
             //console.log('**********************');
             //console.log(res.locals.email);
             res.render('detail',{title:"详细内容"});
+        }],
+
+        '/admin/template/*' : [false, function(req, res){
+            res.send("----");
+
+        }],
+        '/admin/template/1' : [false, function(req, res){
+            console.log('------11---------');
+
         }]
 
 
@@ -85,14 +94,20 @@
             for(var rot in routes){
                 var item =  routes[rot], type = cutil.getType(item);
                 if(isFilter && type === 'array' && item.length && item[0] === true){
-                    eapp.get(rot, filter, item[1]);
-                    eapp.post(rot, filter, item[1]);
+                    eapp.get(rot, filter.authorize, item[1]);
+                    eapp.post(rot, filter.authorize, item[1]);
                 }else{
                     eapp.get(rot, type === 'array' ? item[1] : item);
                     eapp.post(rot, type === 'array' ? item[1] : item);
                 }
             }
+        },
+
+        templateRouter : function(app){
+
+            app.get('')
         }
+
 
     }
 

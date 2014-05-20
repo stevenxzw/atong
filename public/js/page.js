@@ -132,7 +132,7 @@
                             if(rel.get('e') === 'edit'){
 
                                     var modalInstance = $modal.open({
-                                        templateUrl: '1.html',
+                                        templateUrl: 'template/1',
                                         controller: function(){},
                                         size: 500,
                                         resolve: {

@@ -4,11 +4,25 @@
  */
 (function(){
 
-    exports.authorize = function(req, res, next) {
-        if (!req.session.user_id && req.url.indexOf('admin/login') ==-1) {
-            res.redirect('/admin/login');
-        } else {
-            next();
+
+    exports.routerFilter = {
+
+        authorize : function(req, res, next) {
+            if (!req.session.user_id && req.url.indexOf('admin/login') ==-1) {
+                res.redirect('/admin/login');
+            } else {
+                next();
+            }
+
+        },
+
+        templateFilter : function(req, res, next) {
+            if (!req.session.user_id && req.url.indexOf('admin/login') ==-1) {
+                res.redirect('/admin/login');
+            } else {
+                next();
+            }
+
         }
     }
 
