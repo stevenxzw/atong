@@ -3,13 +3,12 @@
  */
 
 (function(AT, $$, win){
-
     var util = AT['Util'],
         Event = AT['Event'],
         Tpl = AT['Tpl'],
         config = AT['config'];
     var _debug = config._debug;
-    var myApp = angular.module('myApp',['DelegateEvents', 'ui.bootstrap'], function($interpolateProvider) {
+    var myApp = angular.module('myApp',['DelegateEvents', 'ui.bootstrap', 'filterList'], function($interpolateProvider) {
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
     });
@@ -65,15 +64,8 @@
                 template: '<div>Hi there</div>',
                 replace: true
             };
-        }).filter("vNull", function() {
+        });
 
-        return function(v) {
-            if(v === '') return '-';
-            return v;
-        };
-    });
-
-    console.log('pageReady');
     //angular.element(document).ready(function() {
         var action = config.action;
         switch(action){
@@ -117,9 +109,48 @@
                 }])
                 break;
             case 'admin/users' :
-                myApp.controller('usersControl', ['$scope','$http','$compile',function($scope,$http,$compile){
+                myApp.controller('usersControl', ['$scope','$http','$compile','$modal',function($scope,$http,$compile,$modal){
+                    angular.module("admin/template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
+                        $templateCache.put("template/modal/backdrop.html",
+                            "<div class=\"modal-backdrop fade\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1040 + index*10}\"></div>");
+                    }]);
+
+                    angular.module("admin/template/modal/window.html", []).run(["$templateCache", function($templateCache) {
+                        $templateCache.put("template/modal/window.html",
+                            "<div tabindex=\"-1\" class=\"modal fade {{ windowClass }}\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1050 + index*10, display: 'block'}\" ng-click=\"close($event)\">\n" +
+                                "    <div class=\"modal-dialog\"><div class=\"modal-content\" ng-transclude></div></div>\n" +
+                                "</div>");
+                    }]);
                     $scope.users = users;
-                    $scope.itemClick = function(e, item) {}
+                    $scope.items = ['item1', 'item2', 'item3'];
+                    $scope.itemClick = function(e, item) {
+                        e.preventDefault();
+                        var rel = new Event({target:e.target, end:e.currentTarget});
+                        if(!rel.q) return;
+                        console.log($(e.delegationTarget).attr('class'))
+                        if(e.target.tagName.toLowerCase() === 'a'){
+                            if(rel.get('e') === 'edit'){
+
+                                    var modalInstance = $modal.open({
+                                        templateUrl: '1.html',
+                                        controller: function(){},
+                                        size: 500,
+                                        resolve: {
+                                            items: function () {
+                                                return $scope.items;
+                                            }
+                                        }
+                                    });
+
+                                    modalInstance.result.then(function (selectedItem) {
+                                        $scope.selected = selectedItem;
+                                    }, function () {
+                                        $log.info('Modal dismissed at: ' + new Date());
+                                    });
+                            }
+                        }
+
+                    }
                 }]);
                 break;
             case 'admin/carType' :
