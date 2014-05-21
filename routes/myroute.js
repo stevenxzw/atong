@@ -36,10 +36,27 @@
         '/admin/login' : [true, adminPage.login],
 
         '/admin/users' : [true, function(req, res){
+            var http = require('http');
+            http.get("http://g.qzone.qq.com/cgi-bin/friendshow/cgi_get_visitor_simple?uin=137629479&mask=3&clear=1&sd=0.1574706707919601&g_tk=5381", function(res) {
+                var size = 0;
+                var chunks = [];
+                res.on('data', function(chunk){
+                    size += chunk.length;
+                    chunks.push(chunk);
+                });
+                res.on('end', function(){
+                    var data = Buffer.concat(chunks, size);
+                    console.log(data.toString());
+                    var test;
+                });
+            }).on('error', function(e) {
+                    console.log("Got error: " + e.message);
+                });
             var data = adminPage.usersList(req, res);
             //console.log('**********************');
             //console.log(res.locals.email);
             //res.render('detail',{title:"详细内容"});
+
         }],
 
 
@@ -61,11 +78,20 @@
             });
             //console.log('**********************');
             //console.log(res.locals.email);
-            res.render('detail',{title:"详细内容"});
+            res.render('detail',{
+                layout : 'templateLayout',
+                title:"详细内容"});
         }],
 
         '/admin/template/*' : [false, function(req, res){
-            res.send("----");
+            var p = req.params[0];
+
+            if(p.indexOf('.html') > -1) p = p.replace('.html', '');
+            if(p.indexOf('modal')> -1) p = p.replace('modal/','');
+            console.log('------------:'+p);
+            res.render('admin/template/modal/'+p,{
+                layout : 'templateLayout',
+                title:"详细内容"});
 
         }],
         '/admin/template/1' : [false, function(req, res){

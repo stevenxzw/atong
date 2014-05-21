@@ -109,6 +109,7 @@
                 }])
                 break;
             case 'admin/users' :
+
                 myApp.controller('usersControl', ['$scope','$http','$compile','$modal',function($scope,$http,$compile,$modal){
                     angular.module("admin/template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
                         $templateCache.put("template/modal/backdrop.html",
@@ -132,8 +133,7 @@
                             if(rel.get('e') === 'edit'){
 
                                     var modalInstance = $modal.open({
-                                        templateUrl: 'template/1',
-                                        controller: function(){},
+                                        templateUrl: 'template/myModalContent',
                                         size: 500,
                                         resolve: {
                                             items: function () {
@@ -145,7 +145,7 @@
                                     modalInstance.result.then(function (selectedItem) {
                                         $scope.selected = selectedItem;
                                     }, function () {
-                                        $log.info('Modal dismissed at: ' + new Date());
+                                       // $log.info('Modal dismissed at: ' + new Date());
                                     });
                             }
                         }
