@@ -109,7 +109,7 @@
                 }])
                 break;
             case 'admin/users' :
-
+                    //http://www.rcdio.com/article/phpjiaocheng/2014/0301/6159.html php使用curl抓取qq空间的访客信息示例
                 myApp.controller('usersControl', ['$scope','$http','$compile','$modal',function($scope,$http,$compile,$modal){
                     angular.module("admin/template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
                         $templateCache.put("template/modal/backdrop.html",
