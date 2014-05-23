@@ -14,7 +14,7 @@
                 <div>最后登录</div>
                 <div>操作</div>
             </div>
-            <div ng-repeat="user in users" class="list-group-item" rel="uid:<% user.uid%>">
+            <div ng-repeat="user in users" class="list-group-item" rel="uid:<% user.uid%>,ln:<% user.likename%>">
                 <div><%$index+1%></div>
                 <div><% user.faceImg|vNull  %></div>
                 <div><% user.uid%></div>
@@ -27,23 +27,7 @@
     </div>
 
 
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item"><% item %></a>
-                </li>
-            </ul>
-            Selected: <b><% selected.item %></b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
+
 </div>
 
 <script>

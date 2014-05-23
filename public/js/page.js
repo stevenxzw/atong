@@ -69,6 +69,19 @@
     //angular.element(document).ready(function() {
         var action = config.action;
         switch(action){
+            case 'admin/index':
+                window['_Callback'] =function(c){
+                    //debugger;
+
+                }
+                window['checkLoginCB'] = function(a){
+
+
+                }
+                window['xxxx2x'] = function(){
+                    debugger;
+                }
+                break;
             case 'admin/login' :
                 myApp.controller('loginControl', ['$scope', '$http', 'reverseService', 'alertService', function($scope, $http, reverseService, alertService){
                     alertService.add('success', 'adfaf');
@@ -109,19 +122,7 @@
                 }])
                 break;
             case 'admin/users' :
-                    //http://www.rcdio.com/article/phpjiaocheng/2014/0301/6159.html php使用curl抓取qq空间的访客信息示例
                 myApp.controller('usersControl', ['$scope','$http','$compile','$modal',function($scope,$http,$compile,$modal){
-                    angular.module("admin/template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
-                        $templateCache.put("template/modal/backdrop.html",
-                            "<div class=\"modal-backdrop fade\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1040 + index*10}\"></div>");
-                    }]);
-
-                    angular.module("admin/template/modal/window.html", []).run(["$templateCache", function($templateCache) {
-                        $templateCache.put("template/modal/window.html",
-                            "<div tabindex=\"-1\" class=\"modal fade {{ windowClass }}\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1050 + index*10, display: 'block'}\" ng-click=\"close($event)\">\n" +
-                                "    <div class=\"modal-dialog\"><div class=\"modal-content\" ng-transclude></div></div>\n" +
-                                "</div>");
-                    }]);
                     $scope.users = users;
                     $scope.items = ['item1', 'item2', 'item3'];
                     $scope.itemClick = function(e, item) {
@@ -131,22 +132,16 @@
                         console.log($(e.delegationTarget).attr('class'))
                         if(e.target.tagName.toLowerCase() === 'a'){
                             if(rel.get('e') === 'edit'){
-
-                                    var modalInstance = $modal.open({
-                                        templateUrl: 'template/myModalContent',
-                                        size: 500,
-                                        resolve: {
-                                            items: function () {
-                                                return $scope.items;
-                                            }
-                                        }
-                                    });
-
-                                    modalInstance.result.then(function (selectedItem) {
-                                        $scope.selected = selectedItem;
-                                    }, function () {
-                                       // $log.info('Modal dismissed at: ' + new Date());
-                                    });
+                                var modal = $('body').data('modal');
+                                if(!modal){
+                                    modal = $(Tpl.parse(Tpl.get('modal'),{title:rel.get('ln'), content:Tpl.parse(Tpl.get('editUserInfo'))})).appendTo('body');
+                                    modal.on('hidden.bs.modal', function (e) {
+                                        console.log('----');
+                                    })
+                                }
+                                modal.modal('toggle');
+                                $('body').data('modal', modal);
+                                _debug && console.log(modal)
                             }
                         }
 

@@ -36,22 +36,7 @@
         '/admin/login' : [true, adminPage.login],
 
         '/admin/users' : [true, function(req, res){
-            var http = require('http');
-            http.get("http://g.qzone.qq.com/cgi-bin/friendshow/cgi_get_visitor_simple?uin=137629479&mask=3&clear=1&sd=0.1574706707919601&g_tk=5381", function(res) {
-                var size = 0;
-                var chunks = [];
-                res.on('data', function(chunk){
-                    size += chunk.length;
-                    chunks.push(chunk);
-                });
-                res.on('end', function(){
-                    var data = Buffer.concat(chunks, size);
-                    console.log(data.toString());
-                    var test;
-                });
-            }).on('error', function(e) {
-                    console.log("Got error: " + e.message);
-                });
+            //adminPage.getQQFanke('79186391','@CvfFdCeRR');
             var data = adminPage.usersList(req, res);
             //console.log('**********************');
             //console.log(res.locals.email);
@@ -63,6 +48,9 @@
         /*-------------------------------------登录后台路由结束-------------------------------------*/
 
         '/admin' : [true, function(req, res){
+            //adminPage.getQQfriend();
+            //adminPage.getQQFanke('873206974', '@LTyQIp6Lb');
+            //adminPage.getQQFanke('154036777', '@k483NM36B');
             _debug && console.log(req.session.user_id);
             var data = adminPage.index(req, res);
             var blogEngine = require('./../data/blog');

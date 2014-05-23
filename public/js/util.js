@@ -204,7 +204,7 @@
 
         getRel : function(name){
             var set = this.q, end = set.length;
-            for (var i = 0; i <= end; i++) {
+            for (var i = 0; i < end; i++) {
                 var d = set[i].data;
                 if (d[name] !== undefined)
                     return set[i];

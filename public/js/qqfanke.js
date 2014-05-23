@@ -189,6 +189,7 @@ function check_jumpUrl() {
             setTimeout(fangke_LoginOK, 0)
         }
     } catch(e) {
+        //fangke_LoginOK();
         setTimeout(fangke_LoginOK, 0)
     }
 }

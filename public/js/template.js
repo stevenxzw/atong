@@ -121,7 +121,6 @@
             '<h4 class="modal-title">{.title}</h4>',
             '</div>',
             '<div class="modal-body">',
-            '<p>One fine body&hellip;</p>',
             '{.content}',
             '</div>',
             '<div class="modal-footer">',
@@ -135,7 +134,29 @@
         'carsByType' : ['<div class="list-group-item insert" id="i-{.key}">{.carslist}',
             '</div>'].join(''),
 
-        'pager' : ['<ul class="pagination" id="pager"><li class="disabled"><a href="#" class="active">&laquo;</a></li></ul>'].join('')
+        'pager' : ['<ul class="pagination" id="pager"><li class="disabled"><a href="#" class="active">&laquo;</a></li></ul>'].join(''),
+
+        'editUserInfo' : ['<form role="form" class="form-inline">',
+            '<div class="form-group">',
+            '<label  for="exampleInputEmail2">Email address</label>',
+            '<input type="text" class="form-control" id="uid" value="{.uid}" placeholder="Enter email">',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="exampleInputPassword2">likename</label>',
+            '<input type="password" class="form-control" value="{.likename}" id="likename" placeholder="likename">',
+            '</div>',
+            '<div class="form-group">',
+            '<label  for="exampleInputEmail2">Email role</label>',
+            '<input type="email" class="form-control" value="{.role}" id="role" placeholder="Enter role">',
+            '</div>',
+            '<div class="form-group">',
+            '<label  for="exampleInputPassword2">Password</label>',
+            '<input type="password" value="{.pwd}" class="form-control" id="exampleInputPassword2" placeholder="Password">',
+            '</div>',
+            '<div class="form-group">',
+            '<button type="submit" class="btn btn-default">Submit</button>',
+            '</div>',
+            '</form>'].join('')
 
 
     }

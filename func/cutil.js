@@ -6,6 +6,15 @@
 
     exports.util = {
 
+       getGTK : function (str){  //g_tk计算方式
+            var hash = 5381;
+            for(var i = 0, len = str.length; i < len; ++i)
+            {
+                hash += (hash << 5) + str.charAt(i).charCodeAt();
+            }
+            return hash & 0x7fffffff;
+        },
+
         deepClone : function(o){
             var type = this.getType(o), newo;
             if(type === 'array'){
