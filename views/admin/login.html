@@ -2,7 +2,7 @@
 <div><a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a></div>
 <div ng-controller="loginControl">
     <form class="form-signin" role="form" ng-init="user={username:'admin',pwd:'123456'}">
-        <h2 class="form-signin-heading">管理员登录---</h2>
+        <h2 class="form-signin-heading">管理员登录---{{debug}}</h2>
         <input type="text" class="form-control" ng-model="user.username" value="admin" id="username"  placeholder="username" required autofocus>
 
         <input type="password" class="form-control"  ng-model="user.pwd" value="123456"  placeholder="Password" required>

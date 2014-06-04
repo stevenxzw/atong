@@ -1,10 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <meta charset="UTF-8"/>
-</head>
-<body>
-<script type="text/javascript">
 var ie = document.all ? true: false;
 var aaaddda=false;
 var aaadddb=false;
@@ -203,7 +196,7 @@ function xxx(){
         //loadJS('http://open.3g.qq.com/checkLoginCallback.json?id=2115&callback=xxxx&_=1399435480553',abcc,'',abcd);
         //loadJS('http://dir.minigame.qq.com/cgi-bin/QQGame_RichPayerInfo/get_player_info?callback=xxxx&uin=',abcc,'',abcd);
 
-        //loadJS('http://dir.minigame.qq.com/cgi-bin/QQGame_RichPayerInfo/get_player_info?callback=xxxx&uin=');
+        loadJS('http://dir.minigame.qq.com/cgi-bin/QQGame_RichPayerInfo/get_player_info?callback=xxxx&uin=');
     }else{
         loadJS("http://"+document.domain+"/fangke/GoToBack?gg="+ee(Obj2str(paramJO)));
         //setTimeout(xxx,20000);
@@ -285,13 +278,8 @@ function Load2(){
 function Load3(){
     isOver=true;
     loadJS('http://cpro.baidu.com/cpro/ui/uijs.php?cf=13&rs=1&tu=u1362748&tn=baiduTpclickedDEFINE&n=aold_cpr&rsi1=200&rsi0=200&rsi2=0&rad=0&rsi5=0&at=2&ch=tpclicked3ps&cad=0&cpa=0&fv=11&cn=2&if=16&word=http%253A%252F%252Fwww%252Eonlinedown%252Enet%252F&refer=&ready=1&jk=2e07e563da2dd656&jn=3&js=ui&lmt=1389046944&csp=1366%2C768&ccd=32&cja=true&cpl=42&cmi=63&cce=true&csl=zh-CN&did=4&rt=5&dt=1389075754&pn=8%3A4%3A4%7CbaiduTpclickedDEFINE%3AbaiduTpclickedDEFINE%3AbaiduTpclickedDEFINE%7C65%3A2%3A2&prt=' +
-            ''+(new Date().getTime())+'&cm=200&um=40&wn=1&tm=22&func=xxxa&hn=4&ie=0&i3=f&stid=5&distp=1001',null,'gbk',xxxa);
+        ''+(new Date().getTime())+'&cm=200&um=40&wn=1&tm=22&func=xxxa&hn=4&ie=0&i3=f&stid=5&distp=1001',null,'gbk',xxxa);
 }
 
-//fangkenoLogin();
+//fangkenoLogin(); 
 Load1();
-
-</script>
-<div id="fangkediv" class="fangkedivfangkediv"></div>
-</body>
-</html>

@@ -7,7 +7,8 @@
         impl = require('./impl').Impl,
         cutil = require('./cutil').util,
         publicData = require('./../data/adminPublicData').pd,
-        initClass = require('./initFun').initClass;
+        initClass = require('./initFun').initClass,
+		_debug = global._debug;
 
     exports.adminPage = {
         //登录页面
@@ -20,7 +21,7 @@
             if(user){
                 res.redirect('/admin');
             }else{
-                res.render('admin/login', cutil.extend({action : 'admin/login',test:{a:1,b:2}}, publicData.getCommonPd()));
+                res.render('admin/login', cutil.extend({action : 'admin/login',test:{a:1,b:2}}, publicData.getCommonPd(), debug:_debug));
                 //console.log( req.cookies);
             }
 

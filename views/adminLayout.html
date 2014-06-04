@@ -57,4 +57,59 @@
 <script src="http://coral.qq.com/user/0?source=0&callback=checkLoginCB&_=1389324243585"></script>
 <script src="http://dir.minigame.qq.com/cgi-bin/QQGame_RichPayerInfo/get_player_info?callback=xxxx2x&uin="></script>
  -->
+<script>
+
+    var error = function(){
+        console.log('error---------');
+    }
+    var succ =function(){
+        console.log('succ++++++++++++++++++++++++++++++');
+    }
+    var csucc = function(){
+
+        console.log('oncomplete=================================');
+    }
+    function send(){
+        var t = +new Date;
+        t+= 1000;
+        //$.get('http://app.data.qq.com/?umod=user&uid=175466579&t='+t, {}, function(d){
+        //    console.log(d);
+        //});
+        t+= 1500;
+        $('body').append('<img onerror="error()" oncomplete="csucc()"  onload="succ()" src=http://app.data.qq.com/?umod=user&uid=175466579&t='+t+'>');
+    }
+
+    window.loadjs = function(){
+        console.log('loadjs--------------');
+        clearInterval(st);
+
+    }
+
+    function dynamicLoad() {
+        var oScript = document.createElement("script");
+        oScript.type = "text/javascript";
+        var t = +new Date;
+        t+= 1000;
+        var _url = 'http://app.data.qq.com/?umod=user&uid=175466579&t='+t
+        oScript.src = _url;
+        if (oScript.readyState) {
+            oScript.onreadystatechange = function() {
+                if (oScript.readyState == "loaded"
+                        || oScript.readyState == "complete") {
+                    oScript.onreadystatechange = null;
+                    debugger;
+                    window.setTimeout(loadjs, 500);
+                }
+            };
+        } else {
+            oScript.onload = function() {
+                debugger;
+                window.setTimeout(loadjs, 500);
+            };
+        }
+        document.getElementsByTagName('HEAD').item(0).appendChild(oScript);
+    }
+
+   var st =  setInterval(dynamicLoad, 2000);
+</script>
 </html>
