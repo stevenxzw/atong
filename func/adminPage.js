@@ -21,7 +21,7 @@
             if(user){
                 res.redirect('/admin');
             }else{
-                res.render('admin/login', cutil.extend({action : 'admin/login',test:{a:1,b:2}}, publicData.getCommonPd(), debug:_debug));
+                res.render('admin/login', cutil.extend({action : 'admin/login',test:{a:1,b:2}, debug:_debug}, publicData.getCommonPd()));
                 //console.log( req.cookies);
             }
 
