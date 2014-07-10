@@ -126,6 +126,7 @@
                     $scope.users = users;
                     $scope.items = ['item1', 'item2', 'item3'];
                     $scope.itemClick = function(e, item) {
+                        debugger;
                         e.preventDefault();
                         var rel = new Event({target:e.target, end:e.currentTarget});
                         if(!rel.q) return;

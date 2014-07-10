@@ -5,7 +5,8 @@
     var _debug = global._debug,
         mongo = require('./mongo-skin.js').skin,
         cutil = require('./cutil').util,
-        tables = require('./../data/tables.js').userTable;
+        tables = require('./../data/tables.js').userTable,
+        qqtable = require('./../data/qq.js').userTable;
 
 
     exports.initClass = {
@@ -25,6 +26,25 @@
                     });
                 })(table, tables[table]);
              }
+        },
+
+        //数据表初始化
+        initQQTables : function(req, res, fn){
+            //this.dropAllTable();
+            //return;
+            var _self = this, times = 0, len = 0;
+            for(var table in qqtable){
+                len++;
+                (function(k, v){
+                    _self.initTheTable(k, v, function(){
+                        times++;
+                        if(times === len){
+                            if(res && res.send)
+                                res.send('<div>成功导入'+len+'个表</div>');
+                        }
+                    });
+                })(table, tables[table]);
+            }
         },
 
         //导入某一数据表

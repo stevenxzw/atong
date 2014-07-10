@@ -11,8 +11,9 @@
         cutil = require('./../func/cutil').util,
         apiUser = require('./../API/user').apiUser,
         apiCar = require('./../API/car').apiCar,
-        adminPage = require('./../func/adminPage').adminPage;
-
+        getSchool =  require('./../func/exportSchool').getSchool,
+        adminPage = require('./../func/adminPage').adminPage,
+        conn = require('./../func/mongo-skin.js').skin;
 
 
 
@@ -20,14 +21,34 @@
         '/test' :[false, function(req, res){
            res.send('<div>test</div>');
         }],
+
+        //把mongolab数据导入本地数据库
+
+        '/import' : function(req, res){
+            var params  = cutil.getHttpRequestParams(req);
+            impl.import(res, params);
+        },
+
+        '/countnull' : function(req, res){
+            conn.count('blogqq', {area : ''}, function(err, rel){
+                res.send('地区为空的QQ有：'+rel);
+                //res.json(200, {num : rel});
+            });
+        },
+
         /*----------------------初始化数据-------------------------*/
         '/init/tables' : [false, function(req, res){
             initClass.initTables(req, res);
         }],
+        '/init/qq' : [false, function(req, res){
+            initClass.initQQTables(req, res);
+        }],
         /*----------------------初始化数据结束-------------------------*/
 
         /*--------------------------API---------------------------*/
-
+        '/api/getApp' : [false, function(req, res){
+           console.log(getSchool.getApp(req, res));
+        }],
 
         '/api/login'   : apiUser.login,
 
